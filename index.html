@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title>World of Perdiction</title>
+  <style>
+  </style>
+  
+  <script src="pixi.dev.js"></script>
+  <script src="game.js"></script>
+ </head>
+ 
+ <body>
+  <script>
+   game = new Game("serveraddr");
+   
+   document.body.appendChild(game.getDomNode());
+
+   game.loop();
+  </script>
+  
+ </body>
+</html>
