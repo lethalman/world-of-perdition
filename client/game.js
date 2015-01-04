@@ -18,6 +18,10 @@ Vector = {
 	norm: function(v) {
 		return Vector.divS(v, Vector.len(v));
 	},
+
+	angle: function(v) {
+		return Math.atan2(v.y, v.x);
+	},
 };
 
 Player = function(game, data, isMe) {
@@ -27,6 +31,7 @@ Player = function(game, data, isMe) {
 	this.isMe = isMe;
 	this.targetPos = null;
 	this.tex = this.game.loadTex("assets/sprites/person.png");
+	this.texAngle = Math.PI/2;
 	this.gobj = this.game.createSprite({
 			tex: this.tex,
 			interactive: true,
@@ -40,7 +45,7 @@ Player.prototype = {
 	move: function(x, y) {
 		this.targetPos = { x: x, y: y };
 		this.targetVec = Vector.norm({ x: x-this.gobj.position.x, y: y-this.gobj.position.y });
-		this.gobj.rotation = Math.atan2(this.targetVec.y, this.targetVec.x) + Math.PI/2;
+		this.gobj.rotation = Vector.angle(this.targetVec) + this.texAngle;
 	},
 
 	animate: function(dt) {
